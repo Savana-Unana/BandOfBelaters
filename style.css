@@ -95,6 +95,11 @@ video{
     padding: 20px;
 }
 
+.subtitle {
+    font-size: 40px;
+    text-align: center;
+    margin: 20px 0;
+}
 .side-box {
     width: 25%;
     background-color: #111;
@@ -154,6 +159,7 @@ footer {
 }
 
 .cta-button {
+    font-family: UPRO;
     display: inline-block;
     margin: 10px 8px;
     padding: 12px 22px;
@@ -163,6 +169,14 @@ footer {
     border-radius: 8px;
     box-shadow: 0 0 10px red;
     font-size: 30px;
+    border: none;
+}
+
+.cta-button:hover {
+    background: darkred;
+    box-shadow: 0 0 15px red;
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
 }
 
 .cta-button.secondary {
@@ -197,6 +211,13 @@ footer {
     padding: 60px 0;
     margin-bottom: 40px;
     box-shadow: 0 8px 30px rgba(255,0,0,0.08) inset;
+}
+
+/* Ensure header's container stacks h1 above subtitle on the index page */
+.index-page header .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .index-page .site-content {
@@ -244,7 +265,7 @@ footer {
 }
 
 .index-page .member-name {
-    font-size: 1.5rem;
+    font-size: 40px;
     font-weight: bold;
     margin-bottom: 5px;
     color: white;
@@ -261,8 +282,8 @@ footer {
 
 .index-page .member-bio {
     color: #ccc;
-    line-height: 1.5;
-    font-size: 1rem;
+    line-height: 0.5;
+    font-size: 25px;
 }
 
 .index-page .contact-section {
@@ -272,6 +293,16 @@ footer {
     text-align: center;
     box-shadow: 0 10px 30px rgba(255,0,0,0.06);
     margin-top: auto; /* push to bottom of main */
+}
+
+.index-page .contact-section {
+    padding: 0%;
+}
+
+.index-page .contact-section p {
+    color: #ccc;
+    font-size: 30px;
+    margin-bottom: 30px;
 }
 
 .index-page .contact-section h2 {

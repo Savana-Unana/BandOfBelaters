@@ -178,13 +178,19 @@ footer {
 }
 
 /* index.html (team page) overrides to preserve layout but match UPRO theme */
-.container {
+.index-page body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.index-page .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
-header {
+.index-page header {
     background: linear-gradient(135deg, rgba(120,0,0,0.9) 0%, rgba(80,0,0,0.9) 100%);
     color: white;
     text-align: center;
@@ -193,14 +199,21 @@ header {
     box-shadow: 0 8px 30px rgba(255,0,0,0.08) inset;
 }
 
-.team-grid {
+.index-page .site-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.index-page .team-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(4, 260px);
+    justify-content: center;
     gap: 30px;
     margin-bottom: 40px;
 }
 
-.team-member {
+.index-page .team-member {
     background: #0b0b0b;
     border-radius: 12px;
     padding: 30px;
@@ -208,14 +221,15 @@ header {
     box-shadow: 0 8px 30px rgba(255,0,0,0.06);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(255,0,0,0.08);
+    max-width: 260px;
 }
 
-.team-member:hover {
+.index-page .team-member:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 60px rgba(255,0,0,0.12);
 }
 
-.member-photo {
+.index-page .member-photo {
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -229,14 +243,14 @@ header {
     font-weight: bold;
 }
 
-.member-name {
+.index-page .member-name {
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 5px;
     color: white;
 }
 
-.member-role {
+.index-page .member-role {
     color: #ff6b6b;
     font-weight: bold;
     margin-bottom: 15px;
@@ -245,43 +259,52 @@ header {
     letter-spacing: 1px;
 }
 
-.member-bio {
+.index-page .member-bio {
     color: #ccc;
-    line-height: 1;
-    font-size: 1.5rem;
+    line-height: 1.5;
+    font-size: 1rem;
 }
 
-.contact-section {
+.index-page .contact-section {
     background: #0b0b0b;
     border-radius: 12px;
     padding: 40px;
     text-align: center;
     box-shadow: 0 10px 30px rgba(255,0,0,0.06);
+    margin-top: auto; /* push to bottom of main */
 }
 
-.contact-section h2 {
+.index-page .contact-section h2 {
     color: white;
     margin-bottom: 20px;
     font-size: 2rem;
 }
 
-.contact-info {
+.index-page .contact-info {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 20px;
 }
 
-.contact-item {
+.index-page .contact-item {
     flex: 1;
     min-width: 200px;
 }
 
-.contact-item strong { color: #ff6b6b; }
+.index-page .contact-item strong { color: #ff6b6b; }
 
-@media (max-width: 768px) {
-    header { padding: 40px 0; }
-    h1 { font-size: 2rem; }
-    .team-grid { grid-template-columns: 1fr; }
-    .contact-info { flex-direction: column; }
+@media (max-width: 1200px) {
+    .index-page .team-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 900px) {
+    .index-page .team-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .index-page .team-grid { grid-template-columns: 1fr; }
+    .index-page header { padding: 40px 0; }
+    .index-page h1 { font-size: 2rem; }
+    .index-page .contact-info { flex-direction: column; }
 }

@@ -18,6 +18,7 @@ body {
     height: 50vh; /* top half of viewport */
     min-height: 320px;
     display: flex;
+    flex-direction: column; /* stack nav above hero content */
     align-items: center;
     justify-content: center;
     overflow: hidden;
@@ -49,6 +50,49 @@ body {
     position: relative;
     z-index: 2; /* above background */
     padding: 10px 20px;
+}
+
+/* Hero navigation (centered above the hero content) */
+.hero .nav {
+    position: relative;
+    z-index: 3; /* above background & overlay */
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    padding: 6px 12px;
+    background: rgba(0,0,0,0.35);
+    border-radius: 40px;
+    backdrop-filter: blur(4px) saturate(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5), 0 0 10px rgba(255,0,0,0.04) inset;
+    transform: translateY(-15px);
+}
+
+.hero .nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 28px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    transition: all 0.18s ease;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: transparent;
+}
+
+.hero .nav a:hover,
+.hero .nav a:focus {
+    background: rgba(255,0,0,0.95);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255,0,0,0.12);
+}
+
+@media (max-width: 700px) {
+    .hero { height: 42vh; }
+    .hero .nav { gap: 8px; padding: 6px; }
+    .hero .nav a { padding: 8px 10px; font-size: 14px; }
 }
 
 @media (max-width: 800px) {

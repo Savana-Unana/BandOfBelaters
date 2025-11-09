@@ -60,14 +60,14 @@ body {
     gap: 14px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 15px;
+    margin-bottom: .5px;
     padding: 6px 12px;
     background: rgba(0,0,0,0.35);
     border-radius: 40px;
     backdrop-filter: blur(4px) saturate(1.1);
     box-shadow: 0 6px 20px rgba(0,0,0,0.5), 0 0 10px rgba(255,0,0,0.04) inset;
-    transform: translateY(-15px);
     font-size: 23px;
+    margin-top: 2.5%;
 }
 
 .hero .nav a {

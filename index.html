@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Meet the team behind UPRO.">
     <title>UPRO Team</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,76 +13,51 @@
             <h1>Band of Belators</h1>
             <p class="subtitle">Meet the talented people behind our success</p>
         </div>
-        <div class="buttons">
-            <a href="upro.html">
-                <button class="cta-button">UPRO</button>
-            </a>
-            <a href="https://bandofbelaters.tumblr.com">
-                <button class="cta-button secondary">Tumblr</button>
-            </a>
+        <div class="buttons" aria-label="Primary links">
+            <a href="upro.html" class="cta-button">UPRO</a>
+            <a href="https://bandofbelaters.tumblr.com" class="cta-button secondary" rel="noopener noreferrer">Tumblr</a>
         </div>
     </header>
-    
+
     <main class="site-content container">
-        <div class="team-grid">
-            <div class="team-member">
+        <div class="team-grid" aria-label="Team members">
+            <div class="team-member" role="button" tabindex="0" data-name="Cran_Bot" data-bio="John is a passionate leader with 3 years of experience in project management. He enjoys problem-solving and bringing creative ideas to life. In his free time, John loves hiking and photography.">
                 <div class="member-photo">Photo Here</div>
                 <h3 class="member-name">Cran_Bot</h3>
                 <p class="member-role">Team Leader</p>
-                <p class="member-bio">
-                    John is a passionate leader with 3 years of experience in project management. 
-                    He enjoys problem-solving and bringing creative ideas to life. In his free time, 
-                    John loves hiking and photography.
-                </p>
+                <p class="member-hint">Click for bio</p>
             </div>
 
-            <div class="team-member">
+            <div class="team-member" role="button" tabindex="0" data-name="JakeDaCake" data-bio="Sarah is our creative genius who brings visual concepts to reality. With a background in graphic design, she has an eye for detail and loves creating user-friendly interfaces. She's also an avid painter and coffee enthusiast.">
                 <div class="member-photo">Photo Here</div>
                 <h3 class="member-name">JakeDaCake</h3>
                 <p class="member-role">Designer</p>
-                <p class="member-bio">
-                    Sarah is our creative genius who brings visual concepts to reality. With a background 
-                    in graphic design, she has an eye for detail and loves creating user-friendly interfaces. 
-                    She's also an avid painter and coffee enthusiast.
-                </p>
+                <p class="member-hint">Click for bio</p>
             </div>
 
-            <div class="team-member">
+            <div class="team-member" role="button" tabindex="0" data-name="Mike Cox" data-bio="Mike is our technical expert who turns ideas into functional solutions. He specializes in web development and has a passion for clean, efficient code. When not coding, Mike enjoys playing guitar and exploring new technologies.">
                 <div class="member-photo">Photo Here</div>
                 <h3 class="member-name">Mike Cox</h3>
                 <p class="member-role">Developer</p>
-                <p class="member-bio">
-                    Mike is our technical expert who turns ideas into functional solutions. He specializes 
-                    in web development and has a passion for clean, efficient code. When not coding, 
-                    Mike enjoys playing guitar and exploring new technologies.
-                </p>
+                <p class="member-hint">Click for bio</p>
             </div>
 
-            <div class="team-member">
+            <div class="team-member" role="button" tabindex="0" data-name="Glitched 0ut" data-bio="Emily conducts thorough research and analysis for our projects. She has a keen attention to detail and excellent analytical skills. Emily loves reading, traveling, and discovering new cultures.">
                 <div class="member-photo">Photo Here</div>
                 <h3 class="member-name">Glitched 0ut</h3>
                 <p class="member-role">Researcher</p>
-                <p class="member-bio">
-                    Emily conducts thorough research and analysis for our projects. She has a keen 
-                    attention to detail and excellent analytical skills. Emily loves reading, 
-                    traveling, and discovering new cultures.
-                </p>
+                <p class="member-hint">Click for bio</p>
             </div>
 
-            <div class="team-member">
+            <div class="team-member" role="button" tabindex="0" data-name="Chip UPRO" data-bio="Chip UPRO is the most valuable team member. With unmatched skills in strategy and execution, Chip ensures that all projects are completed to the highest standards. Outside of work, Chip enjoys gaming and mentoring aspiring professionals. He is also a certified sigma. &quot;I WANT TO MAKE THE WEBSITE&quot; - Chip UPRO">
                 <div class="member-photo">Photo Here</div>
                 <h3 class="member-name">Chip UPRO</h3>
                 <p class="member-role">Certified Sigma</p>
-                <p class="member-bio">
-                    Chip UPRO is a the most valuable team member. With unmatched skills in strategy and execution,
-                    Chip ensures that all projects are completed to the highest standards. Outside of work,
-                    Chip enjoys gaming and mentoring aspiring professionals. He is also a certified sigma. 
-                    <br>"I WANT TO MAKE THE WEBSITE" - Chip UPRO
-                </p>
+                <p class="member-hint">Click for bio</p>
             </div>
-    </div>
+        </div>
 
-    <div class="contact-section">
+        <div class="contact-section">
             <h2>Get In Touch</h2>
             <div class="contact-info">
                 <div class="contact-item">
@@ -102,5 +78,53 @@
             &copy; 2025 UPRO. All rights reserved. | Contact: info@upro.com
         </div>
     </footer>
+
+    <div id="bio-modal" class="bio-modal" aria-hidden="true">
+        <div class="bio-modal-content" role="dialog" aria-modal="true" aria-labelledby="bio-modal-title">
+            <button id="bio-modal-close" class="bio-modal-close" type="button" aria-label="Close bio popup">Close</button>
+            <h2 id="bio-modal-title">Team Member</h2>
+            <p id="bio-modal-text"></p>
+        </div>
+    </div>
+
+    <script>
+        const teamCards = document.querySelectorAll('.team-member');
+        const bioModal = document.getElementById('bio-modal');
+        const bioModalTitle = document.getElementById('bio-modal-title');
+        const bioModalText = document.getElementById('bio-modal-text');
+        const bioModalClose = document.getElementById('bio-modal-close');
+
+        const openBio = (card) => {
+            bioModalTitle.textContent = card.dataset.name || 'Team Member';
+            bioModalText.textContent = card.dataset.bio || '';
+            bioModal.classList.add('open');
+            bioModal.setAttribute('aria-hidden', 'false');
+        };
+
+        const closeBio = () => {
+            bioModal.classList.remove('open');
+            bioModal.setAttribute('aria-hidden', 'true');
+        };
+
+        teamCards.forEach((card) => {
+            card.addEventListener('click', () => openBio(card));
+            card.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    openBio(card);
+                }
+            });
+        });
+
+        bioModalClose.addEventListener('click', closeBio);
+        bioModal.addEventListener('click', (event) => {
+            if (event.target === bioModal) closeBio();
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && bioModal.classList.contains('open')) {
+                closeBio();
+            }
+        });
+    </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 @font-face {
     font-family: 'UPRO';
     src: url('UPROFont.ttf');
+    font-display: swap;
 }
 
 /* Base */
@@ -131,6 +132,8 @@ p {
 video{
     display: block;
     margin: 5px auto;
+    max-width: 100%;
+    height: auto;
 }
 
 .container {
@@ -229,6 +232,13 @@ footer {
     border: 2px solid red;
 }
 
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+}
+
 @media (max-width: 800px) {
     .description h2 { font-size: 48px; }
     .lead { font-size: 28px; }
@@ -237,7 +247,7 @@ footer {
 }
 
 /* index.html (team page) overrides to preserve layout but match UPRO theme */
-.index-page body {
+body.index-page {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -272,22 +282,33 @@ footer {
 }
 
 .index-page .team-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 260px);
+    display: flex;
+    flex-wrap: nowrap;
     justify-content: center;
-    gap: 30px;
-    margin-bottom: 40px;
+    gap: 16px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 20px 16px;
+    box-sizing: border-box;
+    margin: 0 auto 50px;
+    scroll-behavior: smooth;
 }
 
 .index-page .team-member {
     background: #0b0b0b;
     border-radius: 12px;
-    padding: 30px;
+    padding: 16px 14px;
     text-align: center;
     box-shadow: 0 8px 30px rgba(255,0,0,0.06);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(255,0,0,0.08);
-    max-width: 260px;
+    flex: 1 1 0;
+    min-width: 170px;
+    max-width: 230px;
+    margin: 0;
+    cursor: pointer;
 }
 
 .index-page .team-member:hover {
@@ -295,22 +316,27 @@ footer {
     box-shadow: 0 20px 60px rgba(255,0,0,0.12);
 }
 
+.index-page .team-member:focus {
+    outline: 2px solid #ff6b6b;
+    outline-offset: 3px;
+}
+
 .index-page .member-photo {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
-    margin: 0 auto 20px;
+    margin: 0 auto 14px;
     background: radial-gradient(circle at 30% 30%, #ff4d4d, #8b0000);
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 1.2rem;
+    font-size: 0.95rem;
     font-weight: bold;
 }
 
 .index-page .member-name {
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
     margin-bottom: 5px;
     color: white;
@@ -325,10 +351,16 @@ footer {
     letter-spacing: 1px;
 }
 
-.index-page .member-bio {
+.index-page .member-bio,
+.index-page .member-hint {
     color: #ccc;
-    line-height: 0.5;
-    font-size: 25px;
+    line-height: 1.2;
+    font-size: 17px;
+}
+
+.index-page .member-hint {
+    color: #ff9b9b;
+    margin-top: 12px;
 }
 
 .index-page .contact-section {
@@ -338,10 +370,6 @@ footer {
     text-align: center;
     box-shadow: 0 10px 30px rgba(255,0,0,0.06);
     margin-top: auto; /* push to bottom of main */
-}
-
-.index-page .contact-section {
-    padding: 0%;
 }
 
 .index-page .contact-section p {
@@ -370,17 +398,60 @@ footer {
 
 .index-page .contact-item strong { color: #ff6b6b; }
 
-@media (max-width: 1200px) {
-    .index-page .team-grid { grid-template-columns: repeat(3, 1fr); }
+/* Team bio popup */
+.bio-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-@media (max-width: 900px) {
-    .index-page .team-grid { grid-template-columns: repeat(2, 1fr); }
+.bio-modal.open {
+    display: flex;
+}
+
+.bio-modal-content {
+    width: min(680px, 100%);
+    background: #111;
+    border: 2px solid rgba(255, 0, 0, 0.35);
+    border-radius: 14px;
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+    padding: 24px;
+}
+
+.bio-modal-close {
+    font-family: 'UPRO', cursive;
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    float: right;
+}
+
+.bio-modal-content h2 {
+    font-size: 56px;
+    margin: 0 0 12px 0;
+}
+
+.bio-modal-content p {
+    font-size: 26px;
+    line-height: 1.35;
+    text-align: left;
 }
 
 @media (max-width: 600px) {
-    .index-page .team-grid { grid-template-columns: 1fr; }
     .index-page header { padding: 40px 0; }
     .index-page h1 { font-size: 2rem; }
+    .index-page .team-grid { gap: 32px; padding: 0 16px 12px; }
+    .index-page .team-member { width: 220px; min-width: 220px; max-width: 220px; }
     .index-page .contact-info { flex-direction: column; }
+    .bio-modal-content h2 { font-size: 38px; }
+    .bio-modal-content p { font-size: 20px; }
 }

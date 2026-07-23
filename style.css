@@ -57,7 +57,7 @@ body {
     position: relative;
     z-index: 2; /* above background */
     padding: 10px 20px;
-    transform: translateY(36px);
+    transform: translateY(64px);
 }
 
 .hero-logo {

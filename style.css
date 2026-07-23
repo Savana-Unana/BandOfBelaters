@@ -51,6 +51,14 @@ body {
     position: relative;
     z-index: 2; /* above background */
     padding: 10px 20px;
+    transform: translateY(36px);
+}
+
+.hero-logo {
+    display: block;
+    width: min(80vw, 720px);
+    height: auto;
+    margin: 0 auto;
 }
 
 /* Hero navigation (centered above the hero content) */

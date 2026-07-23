@@ -5,8 +5,8 @@
 }
 
 :root {
-    --arcade-blue: #005dff;
-    --arcade-yellow: #ffd400;
+    --arcade-blue: #0088e9;
+    --arcade-yellow: #ffbf00;
     --arcade-navy: #001533;
 }
 
@@ -66,17 +66,60 @@ body {
     transform: translateY(64px);
 }
 
-.hero-logo {
-    display: block;
+.hero-logo-stack {
+    position: relative;
+    display: inline-block;
     width: min(80vw, 720px);
-    height: auto;
+    aspect-ratio: 1440 / 552;
     margin: 0 auto;
+}
+
+.hero-logo,
+.hero-logo-layer {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: auto;
     image-rendering: pixelated;
-    filter:
-        drop-shadow(2px 2px 0 #000)
-        drop-shadow(4px 4px 0 var(--arcade-blue))
-        drop-shadow(6px 6px 0 #000)
-        drop-shadow(7px 7px 0 var(--arcade-yellow));
+}
+
+.hero-logo {
+    margin: 0 auto;
+    z-index: 5;
+    height: 100%;
+    object-fit: contain;
+}
+
+.hero-logo-layer {
+    height: 100%;
+    image-rendering: pixelated;
+    mask: url('UPRO_Logo.png') center / contain no-repeat;
+    -webkit-mask: url('UPRO_Logo.png') center / contain no-repeat;
+}
+
+.logo-gap-one {
+    z-index: 4;
+    background: #000;
+    transform: translate(6px, 6px);
+}
+
+.logo-blue {
+    z-index: 3;
+    background: var(--arcade-blue);
+    transform: translate(12px, 12px);
+}
+
+.logo-gap-two {
+    z-index: 2;
+    background: #000;
+    transform: translate(18px, 18px);
+}
+
+.logo-yellow {
+    z-index: 1;
+    background: var(--arcade-yellow);
+    transform: translate(24px, 24px);
 }
 
 /* Hero navigation (centered above the hero content) */

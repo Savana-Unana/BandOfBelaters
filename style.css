@@ -89,6 +89,7 @@ body {
     z-index: 5;
     height: 100%;
     object-fit: contain;
+    animation: logo-front-pop 160ms steps(2, end) 560ms backwards;
 }
 
 .hero-logo-layer {
@@ -96,30 +97,65 @@ body {
     image-rendering: pixelated;
     mask: url('UPRO_Logo.png') center / contain no-repeat;
     -webkit-mask: url('UPRO_Logo.png') center / contain no-repeat;
+    animation: logo-layer-slide 240ms steps(4, end) backwards;
+    transform-origin: center;
 }
 
 .logo-gap-one {
     z-index: 4;
     background: #000;
     transform: translate(6px, 6px);
+    --logo-layer-x: 6px;
+    --logo-layer-y: 6px;
+    animation-delay: 420ms;
 }
 
 .logo-blue {
     z-index: 3;
     background: var(--arcade-blue);
     transform: translate(12px, 12px);
+    --logo-layer-x: 12px;
+    --logo-layer-y: 12px;
+    animation-delay: 280ms;
 }
 
 .logo-gap-two {
     z-index: 2;
     background: #000;
     transform: translate(18px, 18px);
+    --logo-layer-x: 18px;
+    --logo-layer-y: 18px;
+    animation-delay: 140ms;
 }
 
 .logo-yellow {
     z-index: 1;
     background: var(--arcade-yellow);
     transform: translate(24px, 24px);
+    --logo-layer-x: 24px;
+    --logo-layer-y: 24px;
+    animation-delay: 0ms;
+}
+
+@keyframes logo-layer-slide {
+    from {
+        transform: translate(0, 0);
+    }
+    to {
+        transform: translate(var(--logo-layer-x), var(--logo-layer-y));
+    }
+}
+
+@keyframes logo-front-pop {
+    from {
+        scale: 1;
+    }
+    70% {
+        scale: 1;
+    }
+    to {
+        scale: 1;
+    }
 }
 
 /* Hero navigation (centered above the hero content) */
